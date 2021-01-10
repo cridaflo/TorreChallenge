@@ -3,27 +3,44 @@ import requests
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config.from_object('config')
+
 db = SQLAlchemy(app)
 
 from app import models
-app.config.from_object('config')
-def retrieve_initial_data(self):
-    reply = requests.get('https://bio.torre.co/api/bios/v25a07')
-    groups = reply.json()['professionalCultureGenomeResults']['groups']
-    groups =list( map(lambda g: {'id': g['id'], 'name': g['text']}, groups))
-    print(groups)
 
-@app.before_first_request(retrieve_initial_data)
+#Populates the databases 
+def retrieve_initial_data():
+    reply = requests.get('https://bio.torre.co/api/bios/v25a07').json()
 
-@app.route('/professional_dinamics', methods=['GET'])
-def get_professional_dinamics():
-    return 'professional_dinamics'
+    #retrieves information of professional dynamics
+    groups = reply['professionalCultureGenomeResults']['groups']
+    for group in groups:
+        if not bool(models.ProfessionalDynamics.query.get(group['id'])):
+            prof_dynamic = models.ProfessionalDynamics(id = group['id'], name = group['text'])
+            db.session.add(prof_dynamic)
+            db.session.commit()
+    
+    #retirves information about analyses of professional culture
+    analyses = reply['professionalCultureGenomeResults']['analyses']
+    for analysis in analyses:
+        if not bool(models.CulturalDynamics.query.filter_by(name=analysis['section']).first()):
+            cul_dynamic = models.CulturalDynamics(name = analysis['section'])
+            db.session.add(cul_dynamic)
+            db.session.commit()
 
-@app.route('/create_cultural_profile', methods=['POST'])
-def create_cultural_profile():
-    return 'create_cultural_profile'
+        cul_dynamic_id = models.CulturalDynamics.query.filter_by(name=analysis['section']).first().id
+        
+        prof_cul_dynamic = models.ProfessionalDynamicsCuturalalDynamics(
+            professional_dynamic_id = analysis['groupId'],
+            cultural_dynamic_id = cul_dynamic_id,
+            correlation_analysis = analysis['analysis']
+        )
+        db.session.add(prof_cul_dynamic)
+        db.session.commit()
 
-@app.route('/compare_profiles', methods=['POST'])
-def compare_profiles():
-    return 'compare_profiles'
+
+
+
+
     
