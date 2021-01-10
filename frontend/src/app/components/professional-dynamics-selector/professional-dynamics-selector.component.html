@@ -1,2 +1,18 @@
-<p>professional-dynamics-selector works!</p>
-<button [routerLink]="['/cultural-profile']"> Button Label</button>
+<div class="center">
+    <h1 class="title">Select the 5 professional dynamics tath are more important for the job</h1>
+    <div class="container">
+    
+        <div *ngFor="let item of professionalDynamicsList" 
+        class="alert-primary"
+        [ngClass]="selectedDynamics.indexOf(item)<0 ? '' : 'selected-item' ">
+            <a (click)="select(item)">{{item.name}}</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div *ngFor="let item of selectedDynamics" class="alert-primary">
+            {{item.name}}
+        </div>
+    </div>
+    <button style="float: right;" (click)="generateCulturalProfile()"> Generate cultura profile</button> 
+</div>
