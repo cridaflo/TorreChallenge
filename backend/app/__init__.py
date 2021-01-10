@@ -1,10 +1,20 @@
 from flask import Flask
 import requests
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
 app.config.from_object('config')
+CORS(app, support_credentials=True)
+@app.route('/api/test', methods=['POST', 'GET','OPTIONS'])
+@cross_origin(supports_credentials=True)
+def index():
+    if(request.method=='POST'):
+     some_json=request.get_json()
+     return jsonify({"key":some_json})
+    else:
+        return jsonify({"GET":"GET"})
 
 db = SQLAlchemy(app)
 
@@ -14,7 +24,7 @@ from app import models, routes
 def retrieve_initial_data():
     reply = requests.get('https://bio.torre.co/api/bios/v25a07').json()
 
-    #retrieves information of professional dynamics
+    #Retrieves information of professional dynamics
     groups = reply['professionalCultureGenomeResults']['groups']
     for group in groups:
         if not bool(models.ProfessionalDynamics.query.get(group['id'])):
@@ -22,7 +32,7 @@ def retrieve_initial_data():
             db.session.add(prof_dynamic)
             db.session.commit()
     
-    #retirves information about analyses of professional culture
+    #Retirves information about analyses of professional culture
     analyses = reply['professionalCultureGenomeResults']['analyses']
     for analysis in analyses:
         if not bool(models.CulturalDynamics.query.filter_by(name=analysis['section']).first()):

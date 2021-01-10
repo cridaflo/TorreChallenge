@@ -1,6 +1,14 @@
 from app import app, models
 from flask import request
 import json
+from flask_cors import cross_origin
+
+# @app.after_request
+# def after_request(response):
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+#     return response
 
 @app.route('/professional_dynamics', methods=['GET'])
 def get_professional_dynamics():
@@ -8,6 +16,7 @@ def get_professional_dynamics():
     return json.dumps(models.ProfessionalDynamics.serialize_list(professional_dynamics))
 
 @app.route('/create_cultural_profile', methods=['POST'])
+@cross_origin()
 def create_cultural_profile():
     if request.method == 'POST':
         cul_average = []
