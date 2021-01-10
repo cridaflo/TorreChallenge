@@ -2,12 +2,13 @@ from flask import Flask
 import requests
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
-from app import models
+from app import models, routes
 
 #Populates the databases 
 def retrieve_initial_data():
@@ -31,14 +32,17 @@ def retrieve_initial_data():
 
         cul_dynamic_id = models.CulturalDynamics.query.filter_by(name=analysis['section']).first().id
         
-        prof_cul_dynamic = models.ProfessionalDynamicsCuturalalDynamics(
+        if not bool(models.ProfessionalDynamicsCuturalalDynamics.query.filter_by(
             professional_dynamic_id = analysis['groupId'],
-            cultural_dynamic_id = cul_dynamic_id,
-            correlation_analysis = analysis['analysis']
-        )
-        db.session.add(prof_cul_dynamic)
-        db.session.commit()
-
+            cultural_dynamic_id = cul_dynamic_id
+        ).first()):
+            prof_cul_dynamic = models.ProfessionalDynamicsCuturalalDynamics(
+                professional_dynamic_id = analysis['groupId'],
+                cultural_dynamic_id = cul_dynamic_id,
+                correlation_analysis = analysis['analysis']
+            )
+            db.session.add(prof_cul_dynamic)
+            db.session.commit()
 
 
 
