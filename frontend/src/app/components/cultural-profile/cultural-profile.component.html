@@ -1,2 +1,15 @@
-<p>cultural-profile works!</p>
-<button [routerLink]="['/user-search']"> Button Label</button>
+<div class="body">
+    <h1 class="title">Cultural profile generated</h1>
+    <div id="apex-basic-area-chart"></div>
+    <div class="order-bar">
+        <span>More important</span>
+        <div class="order-container">
+            <div *ngFor="let item of orderedCulturalProfile" class="alert-primary">
+                {{item.cultural_dynamic_name}}
+            </div>
+        </div>
+        <span>Less important</span>
+    </div>
+    <button style="float: left;" [routerLink]="['/professional-dynamics-selection']"> Back</button> 
+    <button style="float: right;" [routerLink]="['/user-search']"> Search users</button> 
+</div>
