@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+.body {
+    margin: auto;
+    width: 90%;
+}
+
+.alert-primary {
+    padding:8px 8px 5px 8px ;
+    background-color: rgba(63,135,245,0.1);
+    border: 1px solid rgba(63,135,245,0.15);
+    color: #53535f;
+    border-radius: 50px;
+    margin: 3px;
+    width: fit-content;
+    :hover{
+        cursor: pointer
+    }
+}
+
+.title {
+    width: fit-content;
+    margin: auto;
+}
