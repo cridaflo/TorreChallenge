@@ -11,7 +11,7 @@ export class UserSearchService {
     private http: HttpClient
   ) { }
 
-  getUsersByName(name :string, offset: number, size: number) {
+  searchUsersByName(name :string, offset: number, size: number) {
     const url = this.APIurl.replace('$offset', offset.toString()).replace('$size', size.toString());
     return this.http.post(url, {
       name: {term: name}
