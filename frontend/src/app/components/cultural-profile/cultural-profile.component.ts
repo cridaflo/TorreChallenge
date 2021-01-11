@@ -55,7 +55,7 @@ export class CulturalProfileComponent implements OnInit {
     };
 
     const chart = new ApexCharts(
-        document.querySelector('#apex-basic-area-chart'),
+        document.querySelector('#apex-cultural-profile'),
         options
     );
 

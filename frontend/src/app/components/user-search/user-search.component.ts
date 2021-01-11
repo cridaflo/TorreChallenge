@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserSearchService } from 'src/app/services/user-search.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CulturalProfileService } from 'src/app/services/cultural-profile.service';
 
 @Component({
   selector: 'app-user-search',
@@ -24,7 +25,8 @@ export class UserSearchComponent implements OnInit {
   constructor(
     private searchUserService: UserSearchService, 
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private culProfileService: CulturalProfileService,
   ) { 
 
   }
@@ -53,7 +55,11 @@ export class UserSearchComponent implements OnInit {
 
   selectUser(user) {
     console.log(user);
-    this.router.navigate(['/comparison-dashboard'])
+    this.culProfileService.compareProfiles(user.username)
+    .subscribe( data =>{
+      sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));
+      this.router.navigate(['/comparison-dashboard'])
+    });
   }
   previous() {
     this.currentPage-=1;

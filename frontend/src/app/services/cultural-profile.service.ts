@@ -14,8 +14,12 @@ export class CulturalProfileService {
     return  this.http.post(culturalProfileEndpoint, porfDynamics);
   }
 
-  compareProfiles(data) {
+  compareProfiles(username) {
     const compareProfilesEndpoint = 'compare_profiles';
-    return  this.http.post(compareProfilesEndpoint, data);
+    const body = {
+      username : username,
+      culturalProfile: JSON.parse(sessionStorage.getItem('culturalProfile'))
+    }
+    return  this.http.post(compareProfilesEndpoint, body);
   }
 }
