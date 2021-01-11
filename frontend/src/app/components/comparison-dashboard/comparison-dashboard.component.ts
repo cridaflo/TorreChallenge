@@ -8,12 +8,14 @@ import ApexCharts from 'apexcharts';
 })
 export class ComparisonDashboardComponent implements OnInit {
 
+  unionIntersectionRatio;
   constructor() { }
 
   ngOnInit(): void {
     const culturalProfile = JSON.parse(sessionStorage.getItem('culturalProfile'));
     const comparisonResults = JSON.parse(sessionStorage.getItem('userCulturalProfileComparisson'));
     const userCulturalProfile = comparisonResults.user_cultural_profile;
+    this.unionIntersectionRatio = comparisonResults.union_inter_ratio;
 
     const data = culturalProfile.map(x => x.average_correlation);
     const dataUser = userCulturalProfile.map(x => x.average_correlation);

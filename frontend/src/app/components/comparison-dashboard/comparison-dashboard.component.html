@@ -1,3 +1,11 @@
-<div id="apex-cultural-profile"></div>
-<button [routerLink]="['/user-search']"> Buscar otro usuario</button>
-<button [routerLink]="['/professional-dynamics-selection']"> Crear otro perfil</button>
+
+<div>
+    <div id="apex-cultural-profile"></div>
+    <div class ="center">
+        <span>The intersection ratio is {{unionIntersectionRatio | number: '1.0-0'}}%</span>
+    </div>
+    <div class="center">
+        <button [routerLink]="['/user-search']"> Search other user</button>
+        <button [routerLink]="['/professional-dynamics-selection']"> Create another profile</button>
+    </div>
+</div>
