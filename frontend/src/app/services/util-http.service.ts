@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UtilHttpService {
 
-  private urlPrefix = 'https//localhost:3000/';
+  private urlPrefix = 'https://localhost:3000/';
 
   constructor(
     private http: HttpClient
@@ -17,6 +17,6 @@ export class UtilHttpService {
   }
 
   post(url: string, body: any, options?: any) {
-    return this.http.post(this.urlPrefix, body, options);
+    return this.http.post(this.urlPrefix + url, body, options);
   }
 }
