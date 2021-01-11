@@ -14,10 +14,6 @@ class ProfessionalDynamics(db.Model, Serializer):
     id = db.Column(db.Integer, primary_key= True)
     name = db.Column(db.String(64), unique = True)
 
-    def serialize(self):
-        d = Serializer.serialize(self)
-        return d
-
 class CulturalDynamics(db.Model, Serializer):
     id = db.Column(db.Integer, primary_key= True)
     name = db.Column(db.String(64), unique = True)
