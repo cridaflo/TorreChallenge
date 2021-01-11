@@ -1,2 +1,25 @@
-<p>user-search works!</p>
-<button [routerLink]="['/comparison-dashboard']"> Button Label</button>
+<div class="body">
+    <div>
+        <input [(ngModel)]="inputName">
+        <button (click)="search()">search</button>
+    </div>
+    <div class="list-wrapper">
+        <ul class="list">
+            <li *ngFor="let user of userList" class="list-item" (click)="selectUser(user)">
+                <div class="image-container">
+                    <img [src]="user.picture ? user.picture : torreLogo" class="list-item-image" alt="user photo">
+                </div>
+                <div class="list-item-content">
+                    <h4>{{user.name}}</h4>
+                    <p>{{user.professionalHeadline}}</p>
+                    <p>{{user.locationName}}</p>
+                  </div>
+            </li>
+        </ul>
+        <div class ="center" *ngIf="userList.length > 0">
+            <a (click)="previous()" *ngIf="currentPage > 1">Previous</a>
+            <span>{{currentPage}}</span>
+            <a (click)="next()" *ngIf="currentPage < lastPage">Next</a>
+        </div>
+    </div>
+</div>

@@ -6,16 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserSearchService {
 
-  private APIurl = ' https://search.torre.co/people/_search/?[offset=$offset&size=$size&aggregate=$aggregate]'
+  private APIurl = ' https://search.torre.co/people/_search/?offset=$offset&size=$size&aggregate=false'
   constructor(
     private http: HttpClient
   ) { }
 
   searchUsersByName(name :string, offset: number, size: number) {
     const url = this.APIurl.replace('$offset', offset.toString()).replace('$size', size.toString());
-    return this.http.post(url, {
-      name: {term: name}
-    });
+    const body: any = {};
+    if(name) {
+      body.name = {term: name};
+    }
+    return this.http.post(url, body);
 
   }
 }

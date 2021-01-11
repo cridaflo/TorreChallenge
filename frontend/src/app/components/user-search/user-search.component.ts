@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserSearchService } from 'src/app/services/user-search.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-search',
@@ -7,9 +10,64 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSearchComponent implements OnInit {
 
-  constructor() { }
+  inputName: string = '';
+  userList: any = [];
 
-  ngOnInit(): void {
+  torreLogo = '../../../assets/torreLogo.png'
+
+  currentPage = 1;
+  currentSearchName = '';
+
+  pageSize = 3;
+  lastPage = 1;
+
+  constructor(
+    private searchUserService: UserSearchService, 
+    private http: HttpClient,
+    private router: Router
+  ) { 
+
   }
 
+  ngOnInit(): void {
+    this.getUsersByName();
+    this.getPrueba();
+  }
+
+  getUsersByName() {
+    this.searchUserService.searchUsersByName(this.currentSearchName, (this.currentPage-1)*this.pageSize, this.pageSize)
+    .subscribe((data: any) => {
+      this.userList  = data.results;
+      this.lastPage = Math.ceil(data.total/this.pageSize);
+      console.log(data);
+    });
+  }
+
+  getPrueba() {
+    this.http.get('https://flask-api-example-2021.herokuapp.com/').subscribe(
+      data => {
+        console.log(data);
+      }
+    )
+  }
+
+  selectUser(user) {
+    console.log(user);
+    this.router.navigate(['/comparison-dashboard'])
+  }
+  previous() {
+    this.currentPage-=1;
+    this.getUsersByName();
+  }
+
+  next() {
+    this.currentPage+=1;
+    this.getUsersByName();
+  }
+
+  search() {
+    this.currentPage = 1;
+    this.currentSearchName = this.inputName;
+    this.getUsersByName();
+  }
 }
