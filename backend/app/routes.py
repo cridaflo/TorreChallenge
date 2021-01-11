@@ -122,6 +122,6 @@ def compare_profiles():
             'user_cultural_profile': user_cultural_profile,
             'inter_area': inter_area,
             'union_area': union_area,
-            'union_inter_ratio': union_inter_ratio
+            'union_inter_ratio': union_inter_ratio*100
             })
 
