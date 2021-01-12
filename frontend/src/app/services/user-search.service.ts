@@ -11,6 +11,7 @@ export class UserSearchService {
     private http: HttpClient
   ) { }
 
+  //Performs a paginated user search by name
   searchUsersByName(name :string, offset: number, size: number) {
     const url = this.APIurl.replace('$offset', offset.toString()).replace('$size', size.toString());
     const body: any = {};
