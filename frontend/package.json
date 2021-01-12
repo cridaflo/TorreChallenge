@@ -24,7 +24,8 @@
     "zone.js": "~0.10.2",
     "igniteui-angular": "^11.0.9",
     "apexcharts": "^3.10.1",
-    "angular-feather": "^6.1.0"
+    "angular-feather": "^6.1.0",
+    "ngx-spinner": "^10.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.2",

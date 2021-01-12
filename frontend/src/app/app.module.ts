@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ComparisonDashboardComponent } from './components/comparison-dashboard/comparison-dashboard.component';
 import { ProfessionalDynamicsSelectorComponent } from './components/professional-dynamics-selector/professional-dynamics-selector.component'
 import { Search } from 'angular-feather/icons';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const icons = {
   Search
@@ -31,7 +32,8 @@ const icons = {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FeatherModule.pick(icons)
+    FeatherModule.pick(icons),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
