@@ -14,6 +14,8 @@
             {{item.name}}
         </div>
     </div>
+
+    <button  class="primary-btn" [routerLink]="['/']" > Back</button>
     <div class="button-container">
         <button  class="primary-btn" (click)="generateCulturalProfile()"> Generate cultural profile</button>
         <p *ngIf="showAlert" class="alert-message">You have to select 5 elements</p>

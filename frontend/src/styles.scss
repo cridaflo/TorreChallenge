@@ -49,11 +49,11 @@ body {
     cursor: pointer;
     outline: none;
     border-radius: 4px;
-    border-width: 2px;
+    border-width: 3px;
     background-color: $primary-color;
     border-color: $primary-color;
     border-style: solid;
-    padding: 4px 6px;
+    padding: 6px 8px;
     min-width: 90px;
     color: $bg-color;
     box-shadow: none;
@@ -62,6 +62,27 @@ body {
         background-color: $bg-color;
         color: $primary-color;
     }
+}
+
+.main-btn {
+    cursor: pointer;
+    outline: none;
+    border-radius: 10px;
+    border-width: 3px;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    border-style: solid;
+    padding: 5px 7px;
+    min-width: 120px;
+    color: $bg-color;
+    box-shadow: none;
+    font-size: 30px;
+    &:hover{        
+        background-color: $bg-color;
+        color: $primary-color;
+    }
+    margin: auto;
+    float: right;
 }
 
 .lef-primary-gradient {
@@ -97,7 +118,7 @@ body {
 
 
 .tag-container {
-    $border-width: 2px;
+    $border-width: 3px;
     display: flex;
     width: calc(100% - 2 * #{$border-width});
     flex-direction: row;
@@ -246,4 +267,59 @@ body {
 
     .alert-message {
         color: $alert-color;
+    }
+
+    .step-card {
+        width: 23%;
+        border: 3px solid $text-color;
+        border-radius: 8px;
+        p {
+            text-align:center;
+        }
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            $radius: 18px; 
+            color: $bg-color;
+            background-color: $text-color;
+            width: calc(2*#{$radius});
+            height: calc(2*#{$radius});
+            margin-top: calc(-1*#{$radius});
+            border-radius:  $radius;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .main-text {
+            font-size: 19px;
+            margin: 5px;
+        }
+        .secondary-text {
+            margin-left: 8px;
+            margin-right: 8px;
+            color: $pragraph-color
+        }
+    }
+    .home-box {
+        display: flex;
+        justify-content: space-between;
+
+        
+    }
+
+    .big-card {
+        border: 3px solid $text-color;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 30px 0;
+        p {
+            color: $pragraph-color;
+            font-size: 18px;
+            text-align:justify;
+        }
     }

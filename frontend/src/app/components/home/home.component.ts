@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  montecarloImage = '../../../assets/montecarloAlt.PNG';
+  comparisonExampleImage = '../../../assets/graphExample.PNG'
+
   constructor() { }
 
   ngOnInit(): void {
