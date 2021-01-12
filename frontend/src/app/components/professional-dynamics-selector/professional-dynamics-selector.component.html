@@ -1,5 +1,5 @@
 <div class="content">
-    <h1 class="center title">Select the 5 professional dynamics that are more important for the job</h1>
+    <h1 class="center title">Select five professional dynamics</h1>
     <div class="tag-container" style="justify-content: center;">
     
         <div *ngFor="let item of professionalDynamicsList" 
@@ -14,5 +14,9 @@
             {{item.name}}
         </div>
     </div>
-    <button  class= "primary-btn" style="float: right;" (click)="generateCulturalProfile()"> Generate cultural profile</button> 
+    <div class="button-container">
+        <button  class="primary-btn" (click)="generateCulturalProfile()"> Generate cultural profile</button>
+        <p *ngIf="showAlert" class="alert-message">You have to select 5 elements</p>
+    </div>
+
 </div>

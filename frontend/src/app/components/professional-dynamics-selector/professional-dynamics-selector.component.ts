@@ -13,6 +13,8 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
     professionalDynamicsList: any;
     selectedDynamics: any = [];
 
+    showAlert = false;
+
     constructor(
         private profDynamicService: ProfessionalDynamicsService,
         private culProfileService: CulturalProfileService,
@@ -41,10 +43,14 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
     }
 
     generateCulturalProfile() {
-        this.culProfileService.createCulturalProfile(this.selectedDynamics)
-        .subscribe(data => {
-            sessionStorage.setItem('culturalProfile', JSON.stringify(data));
-            this.router.navigate(['/cultural-profile'])
-        })
+        if (this.selectedDynamics.length == 5) {
+            this.culProfileService.createCulturalProfile(this.selectedDynamics)
+            .subscribe(data => {
+                sessionStorage.setItem('culturalProfile', JSON.stringify(data));
+                this.router.navigate(['/cultural-profile'])
+            })
+        } else {
+            this.showAlert = true;
+        }
     }
 }
