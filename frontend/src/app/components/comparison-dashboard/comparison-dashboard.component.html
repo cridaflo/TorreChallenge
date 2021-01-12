@@ -1,8 +1,12 @@
 
-<div>
-    <div id="apex-cultural-profile"></div>
-    <div class ="center">
-        <span>The intersection ratio is {{unionIntersectionRatio | number: '1.0-0'}}%</span>
+<div class="content">
+    <h1 class="title center"> Comparison Results</h1>
+    <div class="wrapper wrapper-content">
+        <div id="apex-cultural-profile"></div>
+        <div class="order-container">
+            <h2>Intersection ratio</h2>
+            <div class= "center" style="font-size: 80px">{{unionIntersectionRatio | number: '1.0-0'}}%</div>
+        </div>
     </div>
     <div class="center">
         <button class="primary-btn" style="margin-right: 15px; width: 215px;" [routerLink]="['/user-search']"> Search another user</button>

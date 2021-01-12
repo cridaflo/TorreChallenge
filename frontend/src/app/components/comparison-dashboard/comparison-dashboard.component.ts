@@ -44,6 +44,9 @@ export class ComparisonDashboardComponent implements OnInit {
           show: false,
         }
       },
+      grid: {
+        show: false
+      },
       yaxis: {
         decimalsInFloat: 0,
         min: 0, 
