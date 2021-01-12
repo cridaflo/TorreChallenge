@@ -13,12 +13,14 @@ export class CulturalProfileComponent implements OnInit {
   constructor(
     private router: Router
   ) {
+    //Checks if the required information is stored
     if( !sessionStorage.getItem('culturalProfile')) {
       this.router.navigate(['/professional-dynamics-selection']);
     }
   }
 
   ngOnInit() {
+    //Generation of radar chart
     const culturalProfile = JSON.parse(sessionStorage.getItem('culturalProfile'));
     const data = culturalProfile.map(x => x.average_correlation);
     const max = data.reduce((a,b)=>Math.max(a,b), -Infinity);
