@@ -14,6 +14,7 @@ export class ComparisonDashboardComponent implements OnInit {
   constructor(
     private router: Router
   ) { 
+      //Checks if the requiered information is stored
       if( !sessionStorage.getItem('culturalProfile')) {
         this.router.navigate(['/professional-dynamics-selection']);
       } else if( ! sessionStorage.getItem('userCulturalProfileComparisson')) {
@@ -22,6 +23,7 @@ export class ComparisonDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Generation of radar chart
     this.user = JSON.parse(sessionStorage.getItem('consultedUser'));
     const culturalProfile = JSON.parse(sessionStorage.getItem('culturalProfile'));
     const comparisonResults = JSON.parse(sessionStorage.getItem('userCulturalProfileComparisson'));
