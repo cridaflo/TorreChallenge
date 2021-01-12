@@ -46,29 +46,32 @@ def retrieve_user_professional_culture_analyses(username):
 
     reply = requests.get('https://bio.torre.co/api/bios/'+username).json()
 
-    analyses = reply['professionalCultureGenomeResults']['analyses']
-    groups = reply['professionalCultureGenomeResults']['groups']
-    cul_average = []
+    if 'professionalCultureGenomeResults' in reply:
+        analyses = reply['professionalCultureGenomeResults']['analyses']
+        groups = reply['professionalCultureGenomeResults']['groups']
+        cul_average = []
 
-    cultural_dynamics = models.CulturalDynamics.query.all()
-    cultural_dynamics = models.CulturalDynamics.serialize_list(cultural_dynamics)
+        cultural_dynamics = models.CulturalDynamics.query.all()
+        cultural_dynamics = models.CulturalDynamics.serialize_list(cultural_dynamics)
 
-    for cul_dynamic in cultural_dynamics:
-        total_weight = 0
-        total_sum = 0
-        for analisys in analyses:
-            if(cul_dynamic['name'] == analisys['section']):
-                professional_dynamic =  [x for x in groups if x['id'] == analisys['groupId']][0]
-                weight=answer_weights[professional_dynamic['answer']]
-                total_weight+=weight
-                total_sum += max((analisys['analysis']/3), 0)*weight
-        
-        cul_average.append({
-                'cultural_dynamic_id': cul_dynamic['id'],
-                'cultural_dynamic_name': cul_dynamic['name'],
-                'average_correlation': total_sum*100/total_weight
-            })
-    return cul_average
+        for cul_dynamic in cultural_dynamics:
+            total_weight = 0
+            total_sum = 0
+            for analisys in analyses:
+                if(cul_dynamic['name'] == analisys['section']):
+                    professional_dynamic =  [x for x in groups if x['id'] == analisys['groupId']][0]
+                    weight=answer_weights[professional_dynamic['answer']]
+                    total_weight+=weight
+                    total_sum += max((analisys['analysis']/3), 0)*weight
+            
+            cul_average.append({
+                    'cultural_dynamic_id': cul_dynamic['id'],
+                    'cultural_dynamic_name': cul_dynamic['name'],
+                    'average_correlation': total_sum*100/total_weight
+                })
+        return cul_average
+    else: 
+        return False
 
 def generate_polygon_from_profile(profile):
     polygon = []
@@ -115,13 +118,19 @@ def compare_profiles():
     if request.method == 'POST':
         username = request.json['username']
         user_cultural_profile = retrieve_user_professional_culture_analyses(username)
-        job_cultural_profile = request.json['culturalProfile']
-        inter_area, union_area = intersection_union_area(user_cultural_profile, job_cultural_profile)
-        union_inter_ratio = inter_area/union_area
-        return json.dumps({
-            'user_cultural_profile': user_cultural_profile,
-            'inter_area': inter_area,
-            'union_area': union_area,
-            'union_inter_ratio': union_inter_ratio*100
-            })
+        if user_cultural_profile:
+            job_cultural_profile = request.json['culturalProfile']
+            inter_area, union_area = intersection_union_area(user_cultural_profile, job_cultural_profile)
+            union_inter_ratio = inter_area/union_area
+            return json.dumps({
+                'failed': False,
+                'user_cultural_profile': user_cultural_profile,
+                'inter_area': inter_area,
+                'union_area': union_area,
+                'union_inter_ratio': union_inter_ratio*100
+                })
+        else:
+            return json.dumps({
+                'failed': True
+                })
 
