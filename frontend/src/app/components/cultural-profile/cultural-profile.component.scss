@@ -1,20 +1,13 @@
-.order-bar {
-    display: flex;
-    width: fit-content;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin: -40px auto 20px auto;
-    min-height: 46px;
-}
-
-.order-container {
-    display: flex;
-    width: fit-content;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border: 3px solid rgba(63,135,245,0.15);
-    padding: 2px;
-    min-height: 46px;
+.wrapper {
+    &-buttons {
+        margin-top: -30px;
+        z-index: 1;
+    }
+    &-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        z-index: -1;
+    }
 }

@@ -1,7 +1,9 @@
-<div class="body">
-    <div>
-        <input [(ngModel)]="inputName">
-        <button (click)="search()">search</button>
+<div class="content">
+    <div class="center search-bar">
+        <input class="search-input" placeholder="Search by name" [(ngModel)]="inputName" (keyup.enter)="search()">
+        <button style="float: right;" class="search-button" (click)="search()">
+            <i-feather name="search"></i-feather>
+        </button>
     </div>
     <div class="list-wrapper">
         <ul class="list">
@@ -16,9 +18,9 @@
                   </div>
             </li>
         </ul>
-        <div class ="center" *ngIf="userList.length > 0">
+        <div  class ="center paginator" *ngIf="userList.length > 0">
             <a (click)="previous()" *ngIf="currentPage > 1">Previous</a>
-            <span>{{currentPage}}</span>
+            <span class="search-current-page-card">{{currentPage}}</span>
             <a (click)="next()" *ngIf="currentPage < lastPage">Next</a>
         </div>
     </div>

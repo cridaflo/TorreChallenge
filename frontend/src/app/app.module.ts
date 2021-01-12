@@ -3,12 +3,20 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
+import { FeatherModule } from 'angular-feather';
+
 import { AppComponent } from './app.component';
 import { CulturalProfileComponent } from './components/cultural-profile/cultural-profile.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { HomeComponent } from './components/home/home.component';
 import { ComparisonDashboardComponent } from './components/comparison-dashboard/comparison-dashboard.component';
 import { ProfessionalDynamicsSelectorComponent } from './components/professional-dynamics-selector/professional-dynamics-selector.component'
+import { Search } from 'angular-feather/icons';
+
+const icons = {
+  Search
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +30,8 @@ import { ProfessionalDynamicsSelectorComponent } from './components/professional
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FeatherModule.pick(icons)
   ],
   providers: [],
   bootstrap: [AppComponent]

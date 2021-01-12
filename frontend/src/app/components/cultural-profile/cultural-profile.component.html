@@ -1,15 +1,19 @@
-<div class="body">
-    <h1 class="center">Cultural profile generated</h1>
-    <div id="apex-cultural-profile"></div>
-    <div class="order-bar">
-        <span>More important</span>
-        <div class="order-container">
-            <div *ngFor="let item of orderedCulturalProfile" class="alert-primary">
-                {{item.cultural_dynamic_name}}
+<div class="content">
+    <h1 class="center title">Cultural profile generated</h1>
+    <div class="wrapper wrapper-content">
+        <div id="apex-cultural-profile"></div>
+        <div class="order-bar">
+            <div class="lef-primary-gradient" style="padding-right: 6px;">
+                <div class="order-container">
+                    <div *ngFor="let item of orderedCulturalProfile" class="order-element" style="display: flex;">
+                       <div style="width: 60px;">{{item.average_correlation | number: '1.0-1'}}% </div> {{item.cultural_dynamic_name | titlecase}}
+                    </div>
+                </div>
             </div>
         </div>
-        <span>Less important</span>
     </div>
-    <button style="float: left;" [routerLink]="['/professional-dynamics-selection']"> Back</button> 
-    <button style="float: right;" [routerLink]="['/user-search']"> Search users</button> 
+    <div class="wrapper-buttons">
+        <button class="primary-btn" style="float: left;" [routerLink]="['/professional-dynamics-selection']"> Back</button> 
+        <button class="primary-btn" style="float: right;" [routerLink]="['/user-search']"> Search users</button> 
+    </div>
 </div>

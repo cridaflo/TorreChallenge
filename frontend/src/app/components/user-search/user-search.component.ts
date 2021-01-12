@@ -54,7 +54,6 @@ export class UserSearchComponent implements OnInit {
   }
 
   selectUser(user) {
-    console.log(user);
     this.culProfileService.compareProfiles(user.username)
     .subscribe( data =>{
       sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));

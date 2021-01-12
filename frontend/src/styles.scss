@@ -1,23 +1,229 @@
 /* You can add global styles to this file, and also import other style files */
-.body {
-    margin: auto;
-    width: 90%;
+
+$body-font-family:  'Montserrat', sans-serif;
+$title-font-family:  'Roboto Slab', serif;
+$body-font-size: 16px;
+$button-font-size: 20px;
+$bg-color: #222326;
+$bg-color-2: #0D0D0D;
+$text-color:#D3D936;
+$secondary-text-color: '#9EA0A3';
+$title-color:#D3D936;
+$primary-color: #D3D936;
+$pragraph-color: #9EA0A3;
+$heading-color: #212529;
+$border-color: #f6f6f7;
+$danger-color: #ff3547;
+$global-color: #47404f;
+$green-color: #35d26b;
+$gray-color: #a1aab2;
+$purple-color: #7266ba;
+$light-blue-bg: #42a5f6;
+$success-color: #7ed320;
+$danger-color: #f75d81;
+
+body {
+    background-color: $bg-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+    color: $text-color;
+    margin-bottom: 35px;
+}
+.title {
+    font-family: $title-font-family;
+    color: $title-color;
 }
 
-.alert-primary {
-    padding:8px 8px 5px 8px ;
-    background-color: rgba(63,135,245,0.1);
-    border: 1px solid rgba(63,135,245,0.15);
-    color: #53535f;
-    border-radius: 50px;
-    margin: 3px;
-    width: fit-content;
-    :hover{
-        cursor: pointer
-    }
+.content {
+    margin: auto;
+    padding: 15px 5% 50px 5%;    
 }
+
 
 .center{
     width: fit-content;
     margin: auto;
 }
+
+.primary-btn {
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+    border-width: 2px;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    border-style: solid;
+    padding: 4px 6px;
+    min-width: 55px;
+    color: $bg-color;
+    box-shadow: none;
+    font-size: $button-font-size;
+    &:hover{        
+        background-color: $bg-color;
+        color: $primary-color;
+    }
+}
+
+.lef-primary-gradient {
+    background: linear-gradient(to bottom, $primary-color, $bg-color);
+}
+
+.order-container {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color:  $bg-color;
+    padding: 2px;
+
+    .order-element {
+        padding:10px;
+    }
+    
+}
+
+.tag{
+    padding:8px 8px 5px 8px ;
+    background-color: $bg-color;
+    color: $text-color;
+    border-radius: 50px;
+    margin: 3px;
+    width: fit-content;
+    height: 23px;
+    :hover{
+        cursor: pointer
+    }
+}
+
+
+.tag-container {
+    $border-width: 2px;
+    display: flex;
+    width: calc(100% - 2 * #{$border-width});
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    border: $border-width solid $text-color;
+    padding: 13px 0;
+    min-height: 42px;
+    background-color: $bg-color-2;
+    border-radius: 8px;
+}
+
+.selected-item {
+    border:  3px solid $primary-color ;
+}
+.apexcharts-radar-series {
+    polygon {
+        fill: $bg-color;
+        stroke: $bg-color-2;
+    }
+    line {
+        stroke: $bg-color-2;
+    }
+}
+
+.list {
+    border-radius: 2px;
+    list-style: none;
+    padding: 10px 20px;
+  }
+
+  
+.list-wrapper {
+    margin: 25px auto;
+    max-width: 800px;
+    a {
+       cursor: pointer
+    }
+  }
+  
+.list-item {
+    cursor: pointer;
+    display: flex;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid $bg-color-2;
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &:last-child{
+      border-bottom: none;
+    }
+    &-image {
+      border-radius: 50%;
+      width: 64px;
+    }
+    &-content{
+      margin-left: 20px;
+      h4, p{
+        margin: 0;
+      }
+      h4{
+        margin-top: 10px;
+        font-size: 18px;
+      }
+      p{
+        margin-top: 5px;
+        color:$pragraph-color;
+      }
+    }
+  }
+
+  .search-bar {
+    $icon-side: 35px;
+    display: flex;
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    justify-content: space-between;
+
+    .search-input{
+        width: calc(100% - #{$icon-side});
+        background-color: $bg-color;
+        color: $primary-color;
+        font-size: 27px;
+        border-style: solid;
+        border-radius: 8px;
+        outline: none;
+        padding: 4px 6px;
+    }
+
+    .search-button {
+        height: 43px;
+        cursor: pointer;
+        outline: none;
+        i-feather {
+            color: $primary-color;
+            height: $icon-side;
+            width: $icon-side;
+        }
+        background-color: $bg-color;
+        border: none;
+        
+    }
+  }
+  
+
+  
+
+  .search-current-page-card {
+      background-color: $title-color;
+      color: $bg-color;
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-size: 20px;
+      margin: 0 9px;
+      font-weight: bold;
+  }
+
+  .paginator {
+      display: flex;
+      align-items: center;
+      a {
+          font-size: 20px;
+      }
+   }
