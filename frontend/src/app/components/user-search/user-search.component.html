@@ -16,6 +16,7 @@
                     <h4>{{user.name}}</h4>
                     <p>{{user.professionalHeadline}}</p>
                     <p>{{user.locationName}}</p>
+                    <div *ngIf="user.alert" class="alert-message"> This user has not completed the professional culture test yet</div>
                 </div>
             </li>
         </ul>

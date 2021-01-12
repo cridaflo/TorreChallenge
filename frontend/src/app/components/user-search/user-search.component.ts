@@ -48,10 +48,14 @@ export class UserSearchComponent implements OnInit {
   selectUser(user) {
     this.spinner.show();
     this.culProfileService.compareProfiles(user.username)
-    .subscribe( data =>{
-      sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));
-      this.router.navigate(['/comparison-dashboard'])
+    .subscribe( (data: any) =>{
       this.spinner.hide();
+      if(!data.failed) {
+        sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));
+        this.router.navigate(['/comparison-dashboard'])
+      } else {
+        user.alert = true;
+      }
     });
   }
   previous() {
