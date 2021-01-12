@@ -28,7 +28,9 @@ export class UserSearchComponent implements OnInit {
     private culProfileService: CulturalProfileService,
     private spinner: NgxSpinnerService
   ) { 
-
+    if( !sessionStorage.getItem('culturalProfile')) {
+      this.router.navigate(['/professional-dynamics-selection']);
+    }
   }
 
   ngOnInit(): void {
@@ -51,6 +53,7 @@ export class UserSearchComponent implements OnInit {
     .subscribe( (data: any) =>{
       this.spinner.hide();
       if(!data.failed) {
+        sessionStorage.setItem('consultedUser', JSON.stringify(user.name));
         sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));
         this.router.navigate(['/comparison-dashboard'])
       } else {

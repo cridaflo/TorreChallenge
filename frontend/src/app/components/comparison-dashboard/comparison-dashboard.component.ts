@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import ApexCharts from 'apexcharts';
 
 @Component({
@@ -9,9 +10,19 @@ import ApexCharts from 'apexcharts';
 export class ComparisonDashboardComponent implements OnInit {
 
   unionIntersectionRatio;
-  constructor() { }
+  user;
+  constructor(
+    private router: Router
+  ) { 
+      if( !sessionStorage.getItem('culturalProfile')) {
+        this.router.navigate(['/professional-dynamics-selection']);
+      } else if( ! sessionStorage.getItem('userCulturalProfileComparisson')) {
+        this.router.navigate(['/user-search']);
+      }
+  }
 
   ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage.getItem('consultedUser'));
     const culturalProfile = JSON.parse(sessionStorage.getItem('culturalProfile'));
     const comparisonResults = JSON.parse(sessionStorage.getItem('userCulturalProfileComparisson'));
     const userCulturalProfile = comparisonResults.user_cultural_profile;

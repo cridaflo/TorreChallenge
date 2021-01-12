@@ -12,7 +12,8 @@ const routes: Routes = [
   {path: 'professional-dynamics-selection', component: ProfessionalDynamicsSelectorComponent},
   {path: 'cultural-profile', component: CulturalProfileComponent},
   {path: 'user-search', component: UserSearchComponent},
-  {path: 'comparison-dashboard', component: ComparisonDashboardComponent}
+  {path: 'comparison-dashboard', component: ComparisonDashboardComponent},
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

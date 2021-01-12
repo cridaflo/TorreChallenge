@@ -1,4 +1,5 @@
 import { OnInit, Component, ViewChild} from "@angular/core";
+import { Router } from "@angular/router";
 import ApexCharts from 'apexcharts';
 
 @Component({
@@ -9,7 +10,12 @@ import ApexCharts from 'apexcharts';
 export class CulturalProfileComponent implements OnInit {
 
   orderedCulturalProfile = [];
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
+    if( !sessionStorage.getItem('culturalProfile')) {
+      this.router.navigate(['/professional-dynamics-selection']);
+    }
   }
 
   ngOnInit() {
