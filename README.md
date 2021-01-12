@@ -7,7 +7,7 @@ Cultural Profile Matcher is web app that allows recruiters to check compatibilit
 
 ### Backend
 
-Set your database URI credentials in config.py like this: SQLALCHEMY_DATABASE_URI  = $DATABASE_URI.
+Set your database URI credentials in config.py like this: SQLALCHEMY_DATABASE_URI  = $DATABASE_URI. On the backend folder run the following commands:
 
 ```bash
 # install dependencies
@@ -22,7 +22,7 @@ Make sure that your browser accepts self signed certificates from https://127.0.
 
 ### Frontend
 
-Make sure to have angular client instlled in yuor computer
+Make sure to have angular client instlled in yuor computer. On the frontend folder run the following commands:
 
 ```bash
 # install dependencies
