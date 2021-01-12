@@ -12,10 +12,12 @@ export class UtilHttpService {
     private http: HttpClient
   ) { }
 
+  //Preppends server url to the specified url and performs a get request
   get(url: string, options?: any){
     return this.http.get(this.urlPrefix + url, options);
   }
 
+  //Preppends server url to the specified url and performs a post request with specified body
   post(url: string, body: any, options?: any) {
     return this.http.post(this.urlPrefix + url, body, options);
   }
