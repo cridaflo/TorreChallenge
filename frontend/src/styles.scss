@@ -158,6 +158,7 @@ body {
     }
     &-content{
       margin-left: 20px;
+      margin-bottom: 10px;
       h4, p{
         margin: 0;
       }
@@ -229,19 +230,20 @@ body {
    }
 
    .wrapper {
-    &-buttons {
-        margin-top: -30px;
-        z-index: 1;
-    }
-    &-content {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        z-index: -1;
+        &-buttons {
+            margin-top: -30px;
+            z-index: 1;
+        }
+        &-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            z-index: -1;
+        }
+
     }
 
     .alert-message {
         color: $alert-color;
     }
-}

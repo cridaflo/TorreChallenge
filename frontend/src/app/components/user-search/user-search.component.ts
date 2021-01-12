@@ -19,7 +19,7 @@ export class UserSearchComponent implements OnInit {
   currentPage = 1;
   currentSearchName = '';
 
-  pageSize = 3;
+  pageSize = 20;
   lastPage = 1;
 
   constructor(
