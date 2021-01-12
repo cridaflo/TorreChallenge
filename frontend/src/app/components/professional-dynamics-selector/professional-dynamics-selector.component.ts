@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CulturalProfileService } from 'src/app/services/cultural-profile.service';
 import { ProfessionalDynamicsService } from 'src/app/services/professional-dynamics.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-professional-dynamics-selector',
@@ -18,7 +19,8 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
     constructor(
         private profDynamicService: ProfessionalDynamicsService,
         private culProfileService: CulturalProfileService,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {
 
     }
@@ -27,9 +29,11 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
     }
 
     getProfessionalDynamics() {
+        this.spinner.show();
         this.profDynamicService.getProfessionalDynamics()
         .subscribe( data => {
             this.professionalDynamicsList = data;
+            this.spinner.hide();
         })
     }
 
@@ -44,10 +48,12 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
 
     generateCulturalProfile() {
         if (this.selectedDynamics.length == 5) {
+            this.spinner.show();
             this.culProfileService.createCulturalProfile(this.selectedDynamics)
             .subscribe(data => {
                 sessionStorage.setItem('culturalProfile', JSON.stringify(data));
-                this.router.navigate(['/cultural-profile'])
+                this.router.navigate(['/cultural-profile']);
+                this.spinner.hide();
             })
         } else {
             this.showAlert = true;

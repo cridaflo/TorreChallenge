@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSearchService } from 'src/app/services/user-search.service';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CulturalProfileService } from 'src/app/services/cultural-profile.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-search',
@@ -24,40 +24,34 @@ export class UserSearchComponent implements OnInit {
 
   constructor(
     private searchUserService: UserSearchService, 
-    private http: HttpClient,
     private router: Router,
     private culProfileService: CulturalProfileService,
+    private spinner: NgxSpinnerService
   ) { 
 
   }
 
   ngOnInit(): void {
     this.getUsersByName();
-    this.getPrueba();
   }
 
   getUsersByName() {
+    this.spinner.show();  
     this.searchUserService.searchUsersByName(this.currentSearchName, (this.currentPage-1)*this.pageSize, this.pageSize)
     .subscribe((data: any) => {
       this.userList  = data.results;
       this.lastPage = Math.ceil(data.total/this.pageSize);
-      console.log(data);
+      this.spinner.hide();
     });
   }
 
-  getPrueba() {
-    this.http.get('https://flask-api-example-2021.herokuapp.com/').subscribe(
-      data => {
-        console.log(data);
-      }
-    )
-  }
-
   selectUser(user) {
+    this.spinner.show();
     this.culProfileService.compareProfiles(user.username)
     .subscribe( data =>{
       sessionStorage.setItem('userCulturalProfileComparisson', JSON.stringify(data));
       this.router.navigate(['/comparison-dashboard'])
+      this.spinner.hide();
     });
   }
   previous() {
