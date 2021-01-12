@@ -27,7 +27,8 @@ export class UserSearchComponent implements OnInit {
     private router: Router,
     private culProfileService: CulturalProfileService,
     private spinner: NgxSpinnerService
-  ) { 
+  ) {
+     //Checks if the requiered information is stored
     if( !sessionStorage.getItem('culturalProfile')) {
       this.router.navigate(['/professional-dynamics-selection']);
     }
@@ -37,6 +38,7 @@ export class UserSearchComponent implements OnInit {
     this.getUsersByName();
   }
 
+  //Performs search by nae in the current page
   getUsersByName() {
     this.spinner.show();  
     this.searchUserService.searchUsersByName(this.currentSearchName, (this.currentPage-1)*this.pageSize, this.pageSize)
@@ -47,6 +49,7 @@ export class UserSearchComponent implements OnInit {
     });
   }
 
+  //Handles the event of selecting a user and calculates their cultural compatibility factor in the cases in which is possible
   selectUser(user) {
     this.spinner.show();
     this.culProfileService.compareProfiles(user.username)
@@ -61,16 +64,20 @@ export class UserSearchComponent implements OnInit {
       }
     });
   }
+  
+  //Retrieves users of the previous page
   previous() {
     this.currentPage-=1;
     this.getUsersByName();
   }
 
+  //Retrieves users of the next page
   next() {
     this.currentPage+=1;
     this.getUsersByName();
   }
 
+  //Performs search by a new name
   search() {
     this.currentPage = 1;
     this.currentSearchName = this.inputName;
