@@ -28,6 +28,7 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
         this.getProfessionalDynamics();
     }
 
+    //Retrieves professional dynamics from backend
     getProfessionalDynamics() {
         this.spinner.show();
         this.profDynamicService.getProfessionalDynamics()
@@ -37,6 +38,7 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
         })
     }
 
+    //Handler of the selection of a tag event
     select(item){
         const index = this.selectedDynamics.indexOf(item);
         if(index<0 && this.selectedDynamics.length <5){
@@ -46,6 +48,7 @@ export class ProfessionalDynamicsSelectorComponent implements OnInit {
         }
     }
 
+    //Generates the cultural profile with the professional dynamics selected
     generateCulturalProfile() {
         if (this.selectedDynamics.length == 5) {
             this.spinner.show();
