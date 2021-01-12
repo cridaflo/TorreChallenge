@@ -12,6 +12,7 @@ export class ProfessionalDynamicsService {
     private http: UtilHttpService
   ) { }
 
+  //Retrieves all professional dynamics from the server
   getProfessionalDynamics() {
     const professionalDynamicsEndpoint = 'professional_dynamics';
     return this.http.get(professionalDynamicsEndpoint);
